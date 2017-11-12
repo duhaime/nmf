@@ -1,0 +1,8 @@
+*.swp
+*.pem
+.cache/
+__pycache__/
+results
+texts/
+texts.tar.gz
+README.md.html
