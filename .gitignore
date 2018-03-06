@@ -1,8 +1,12 @@
 *.swp
 *.pem
+*.DS_Store
 .cache/
 __pycache__/
+nmf.egg-info/
 results
 texts/
+build/
+dist/
 texts.tar.gz
 README.md.html
