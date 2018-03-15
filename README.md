@@ -17,29 +17,46 @@ Given a collection of input documents, the source code in this repository builds
 wget https://s3.amazonaws.com/duhaime/github/nmf/texts.tar.gz
 tar -zxf texts.tar.gz && rm texts.tar.gz
 
+# Obtain nmf script
+git clone https://github.com/duhaime/nmf
+
 # Install dependencies
-pip install -r requirements.txt --user
+cd nmf && pip install -r requirements.txt --user
 
 # Build a topic model with 20 topics using ./texts/ as the input directory
-python nmf.py -files texts -topics 20
+python nmf/nmf.py -files texts -topics 20
 ```
-
-For a list of all command line options, run `python nmf.py -h`
 
 #### Class Usage
 
-```
-import nmf
-model = nmf.NMF(files='texts', topics=20, write_output=False)
+To install, run `pip install nmf`.
 
-# access the documents by topics matrix
+Then, to build a topic model using all text files in `texts`, run:
+
+```
+from nmf import NMF
+model = NMF(files='texts', topics=20)
+```
+
+The following attributes will then be present on `model`:
+
+```
+# the top terms in each topic
+model.topics_to_words # top terms in each topic
+
+# the presence of each topic in each document
+model.doc_to_topics # presence of each topic in each document
+
+# the documents by topics matrix; shape = (documents, topics)
 model.documents_by_topics
 
-# access the topics by terms matrix
+# the topics by terms matrix; shape = (topics, terms)
 model.topics_by_terms
 ```
 
 ### JSON Output
+
+If you evoke NMF from the command line, or you build an NMF model and specify the `write_output=True` argument, the following output files will be generated in a directory named `results`:
 
 **topic_to_words.json** maps each topic id to the top words in that topic:
 

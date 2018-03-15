@@ -1,5 +1,7 @@
 import os, sys, glob, types, pytest, six
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append('.')
+sys.path.append('..')
+sys.path.append(os.path.join('..', 'nmf'))
 import nmf
 
 @pytest.fixture
